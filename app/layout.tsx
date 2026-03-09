@@ -57,7 +57,6 @@ const jsonLd = {
     postalCode: "33602",
     addressCountry: "US",
   },
-  telephone: "+18135550000",
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",

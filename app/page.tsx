@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Logo from "@/components/Logo";
+import FaqList from "@/components/FaqList";
 import {
   IVORY,
   CREAM,
@@ -14,8 +15,6 @@ import {
   LINE,
   SERIF,
   SANS,
-  PHONE,
-  PHONE_HREF,
   ADDRESS,
   CITY_STATE,
   MAPS_URL,
@@ -166,21 +165,7 @@ export default function DDTAlterations() {
                 every time. From hemming and resizing to detailed repairs and
                 custom adjustments, every piece is handled with care.
               </p>
-              <p style={{ marginBottom: 28 }}>
-                <a
-                  href={PHONE_HREF}
-                  style={{
-                    fontFamily: SERIF,
-                    fontSize: 20,
-                    fontWeight: 500,
-                    color: NAVY,
-                    textDecoration: "none",
-                  }}
-                >
-                  {PHONE}
-                </a>
-              </p>
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 28 }}>
                 <a href="#services" className="btn-p">Our Services</a>
                 <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="btn-o">
                   Get Directions
@@ -374,16 +359,7 @@ export default function DDTAlterations() {
                 Common <em style={{ fontStyle: "italic", color: GOLD_D }}>Questions</em>
               </h2>
             </div>
-            {FAQS.map((f, i) => (
-              <details key={i} className="faq-item">
-                <summary>{f.q}</summary>
-                <div className="faq-answer">
-                  <div className="faq-answer-inner">
-                    <p>{f.a}</p>
-                  </div>
-                </div>
-              </details>
-            ))}
+            <FaqList items={FAQS} />
           </div>
         </section>
 
@@ -418,24 +394,9 @@ export default function DDTAlterations() {
                     </div>
                   </div>
                 </div>
-                <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <svg width="32" height="32" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke={GOLD} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <div>
-                    <div className="sec-label" style={{ marginBottom: 4 }}>Phone</div>
-                    <a
-                      href={PHONE_HREF}
-                      style={{ fontSize: 15, color: CHARCOAL, textDecoration: "none" }}
-                    >
-                      {PHONE}
-                    </a>
-                  </div>
-                </div>
               </div>
 
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                <a href={PHONE_HREF} className="btn-g">Call Now</a>
                 <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="btn-p">
                   Get Directions
                 </a>
@@ -520,10 +481,7 @@ export default function DDTAlterations() {
               {ADDRESS}, {CITY_STATE}
             </div>
             <div style={{ fontSize: 11, color: WARM, marginTop: 2 }}>
-              Mon–Fri 7am–7pm · Sat 8am–4pm ·{" "}
-              <a href={PHONE_HREF} style={{ color: WARM, textDecoration: "none" }}>
-                {PHONE}
-              </a>
+              Mon–Fri 7am–7pm · Sat 8am–4pm
             </div>
           </div>
           {/* Social links */}

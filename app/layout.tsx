@@ -23,9 +23,56 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "DDT Alterations — Harbour Island, Tampa",
+  title: "DDT Alterations — Tailoring & Repairs | Harbour Island, Tampa FL",
   description:
-    "Professional alterations and garment repairs on Harbour Island in Tampa. Hemming, resizing, zipper replacement, dress alterations, and more.",
+    "Professional alterations, tailoring, and garment repairs on Harbour Island in Tampa, FL. Hemming, resizing, zipper replacement, dress alterations, and same-week turnaround. Walk-ins welcome.",
+  openGraph: {
+    title: "DDT Alterations — Tailoring & Repairs | Harbour Island, Tampa FL",
+    description:
+      "Professional alterations, tailoring, and garment repairs on Harbour Island in Tampa, FL. Same-week turnaround. Walk-ins welcome.",
+    url: "https://ddt-alterations-site.vercel.app",
+    siteName: "DDT Alterations",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "DDT Alterations — Harbour Island, Tampa FL",
+    description:
+      "Professional alterations, tailoring, and garment repairs. Same-week turnaround. Walk-ins welcome.",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "DDT Alterations",
+  description:
+    "Professional alterations, tailoring, and garment repairs on Harbour Island in Tampa, FL.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "704 Harbour Post Dr",
+    addressLocality: "Tampa",
+    addressRegion: "FL",
+    postalCode: "33602",
+    addressCountry: "US",
+  },
+  telephone: "+18135550000",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "07:00",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "08:00",
+      closes: "16:00",
+    },
+  ],
+  url: "https://ddt-alterations-site.vercel.app",
 };
 
 export default function RootLayout({
@@ -35,6 +82,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${cormorant.variable} ${outfit.variable}`}>
         {children}
       </body>

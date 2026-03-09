@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 /* ═══ PALETTE — warm ivory + deep navy + gold thread ═══ */
 const IVORY = "#FAF8F3";
@@ -241,65 +242,6 @@ const Stitch = ({
   </div>
 );
 
-/* ═══ IMAGE PLACEHOLDER ═══ */
-const ImagePlaceholder = ({
-  height = 200,
-  style: s = {},
-}: {
-  height?: number | string;
-  style?: React.CSSProperties;
-}) => (
-  <div
-    style={{
-      height,
-      background: CREAM,
-      border: `1px solid ${LINE}`,
-      borderRadius: 4,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      position: "relative",
-      overflow: "hidden",
-      ...s,
-    }}
-  >
-    <div
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        opacity: 0.03,
-      }}
-    >
-      <span
-        style={{
-          fontFamily: SERIF,
-          fontSize: 80,
-          fontWeight: 600,
-          color: NAVY,
-          letterSpacing: 8,
-        }}
-      >
-        DDT
-      </span>
-    </div>
-    <span
-      style={{
-        fontFamily: SANS,
-        fontSize: 11,
-        color: `${WARM}80`,
-        letterSpacing: 2,
-        textTransform: "uppercase",
-        fontWeight: 400,
-        position: "relative",
-      }}
-    >
-      Photo
-    </span>
-  </div>
-);
-
 /* ═══ MAIN PAGE ═══ */
 export default function DDTAlterations() {
   const [, setSec] = useState("top");
@@ -460,13 +402,23 @@ export default function DDTAlterations() {
             </div>
           </div>
 
-          {/* Hero placeholder image */}
-          <div style={{ position: "relative" }}>
-            <ImagePlaceholder
-              height={380}
-              style={{
-                borderRadius: 4,
-              }}
+          {/* Hero image — sewing machine close-up */}
+          <div
+            style={{
+              position: "relative",
+              height: 380,
+              borderRadius: 4,
+              overflow: "hidden",
+              border: `1px solid ${LINE}`,
+            }}
+          >
+            <Image
+              src="/assets/ddt-alterations-sewing-maching.png"
+              alt="Professional sewing machine at DDT Alterations"
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              priority
             />
           </div>
         </div>
@@ -543,10 +495,23 @@ export default function DDTAlterations() {
               overcomplicating the process.
             </p>
           </div>
-          <ImagePlaceholder
-            height={300}
-            style={{ borderRadius: 4 }}
-          />
+          <div
+            style={{
+              position: "relative",
+              height: 300,
+              borderRadius: 4,
+              overflow: "hidden",
+              border: `1px solid ${LINE}`,
+            }}
+          >
+            <Image
+              src="/assets/ddt-alterations-workspace.png"
+              alt="DDT Alterations workspace and studio"
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
         </div>
       </section>
 
@@ -720,11 +685,6 @@ export default function DDTAlterations() {
                 background: W,
               }}
             >
-              {/* Service placeholder image */}
-              <ImagePlaceholder
-                height={150}
-                style={{ marginBottom: 16, borderRadius: 3 }}
-              />
               <div style={{ marginBottom: 14 }}>{s.icon}</div>
               <h3
                 style={{
@@ -994,98 +954,24 @@ export default function DDTAlterations() {
             </div>
           </div>
 
-          {/* Map / Visual placeholder */}
+          {/* Building exterior photo */}
           <div>
             <div
               style={{
                 borderRadius: 4,
                 overflow: "hidden",
                 border: `1px solid ${LINE}`,
-                background: CREAM,
+                position: "relative",
+                aspectRatio: "4 / 3",
               }}
             >
-              <svg
-                width="100%"
-                viewBox="0 0 400 300"
-                preserveAspectRatio="xMidYMid slice"
-              >
-                <rect width="400" height="300" fill="#E8E2D6" />
-                <path
-                  d="M0 180 Q100 160, 200 180 T400 180 L400 300 L0 300Z"
-                  fill="#C8D8E4"
-                  opacity="0.4"
-                />
-                <path
-                  d="M0 200 Q100 185, 200 200 T400 195 L400 300 L0 300Z"
-                  fill="#B8CCDB"
-                  opacity="0.3"
-                />
-                <rect x="80" y="0" width="3" height="180" fill="#D5CFC4" />
-                <rect x="180" y="0" width="3" height="175" fill="#D5CFC4" />
-                <rect x="280" y="0" width="3" height="170" fill="#D5CFC4" />
-                <rect x="0" y="80" width="400" height="3" fill="#D5CFC4" />
-                <rect x="0" y="140" width="350" height="3" fill="#D5CFC4" />
-                <rect
-                  x="120"
-                  y="90"
-                  width="120"
-                  height="80"
-                  rx="4"
-                  fill="#E0DAD0"
-                  stroke="#C8C2B4"
-                  strokeWidth="1"
-                />
-                <circle cx="180" cy="120" r="12" fill={NAVY} />
-                <circle cx="180" cy="120" r="5" fill={GOLD} />
-                <text
-                  x="180"
-                  y="100"
-                  textAnchor="middle"
-                  fontFamily={SANS}
-                  fontSize="8"
-                  fill={NAVY}
-                  fontWeight="600"
-                >
-                  DDT ALTERATIONS
-                </text>
-                <text
-                  x="175"
-                  y="155"
-                  textAnchor="middle"
-                  fontFamily={SANS}
-                  fontSize="7"
-                  fill="#8A8275"
-                >
-                  Harbour Island
-                </text>
-                <text
-                  x="80"
-                  y="70"
-                  fontFamily={SANS}
-                  fontSize="6"
-                  fill="#AAA49A"
-                >
-                  Downtown Tampa
-                </text>
-                <text
-                  x="250"
-                  y="70"
-                  fontFamily={SANS}
-                  fontSize="6"
-                  fill="#AAA49A"
-                >
-                  Water Street
-                </text>
-                <text
-                  x="300"
-                  y="230"
-                  fontFamily={SANS}
-                  fontSize="6"
-                  fill="#8AAABB"
-                >
-                  Hillsborough Bay
-                </text>
-              </svg>
+              <Image
+                src="/assets/ddt-alterations-building-location-square.png"
+                alt="DDT Alterations storefront on Harbour Island"
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
             <div
               style={{

@@ -16,7 +16,6 @@ import {
 const NAV_ITEMS = [
   ["services", "Services"],
   ["about", "About"],
-  ["reviews", "Reviews"],
   ["contact", "Visit"],
 ] as const;
 

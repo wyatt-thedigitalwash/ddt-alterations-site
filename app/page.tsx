@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Logo from "@/components/Logo";
-import ContactForm from "@/components/ContactForm";
 import {
   IVORY,
   CREAM,
@@ -101,24 +100,6 @@ function Stitch({ color = GOLD, style: s = {} }: { color?: string; style?: React
   );
 }
 
-/* ═══ REVIEWS DATA ═══ */
-const REVIEWS = [
-  {
-    name: "Sarah M.",
-    text: "DDT took in my wedding dress perfectly — it fit like a glove on the big day. Quick turnaround and incredibly professional. Highly recommend!",
-    stars: 5,
-  },
-  {
-    name: "James R.",
-    text: "I brought in three suits that needed tapering and hemming. All three came back looking sharp. Fair pricing and fast service.",
-    stars: 5,
-  },
-  {
-    name: "Maria L.",
-    text: "The only place I trust with my clothes. They fixed a zipper on my favorite jacket that two other shops said couldn't be repaired.",
-    stars: 5,
-  },
-];
 
 /* ═══ FAQ DATA ═══ */
 const FAQS = [
@@ -381,33 +362,6 @@ export default function DDTAlterations() {
           </div>
         </section>
 
-        {/* ═══ REVIEWS ═══ */}
-        <section id="reviews" className="sp" style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 44 }}>
-            <div className="sec-label">Testimonials</div>
-            <h2 className="sec-heading" style={{ fontSize: "clamp(28px,4vw,40px)" }}>
-              What Our Clients <em style={{ fontStyle: "italic", color: GOLD_D }}>Say</em>
-            </h2>
-          </div>
-          <div className="rg3">
-            {REVIEWS.map((r, i) => (
-              <div key={i} className="review-card">
-                <div className="review-stars">
-                  {Array.from({ length: r.stars }).map((_, si) => (
-                    <span key={si}>{Ic.star()}</span>
-                  ))}
-                </div>
-                <p style={{ fontSize: 14, color: WARM, lineHeight: 1.8, fontWeight: 400, marginBottom: 16 }}>
-                  &ldquo;{r.text}&rdquo;
-                </p>
-                <div style={{ fontFamily: SERIF, fontSize: 16, fontWeight: 500, color: NAVY }}>
-                  {r.name}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* ═══ FAQ ═══ */}
         <section
           className="sp"
@@ -423,16 +377,20 @@ export default function DDTAlterations() {
             {FAQS.map((f, i) => (
               <details key={i} className="faq-item">
                 <summary>{f.q}</summary>
-                <p>{f.a}</p>
+                <div className="faq-answer">
+                  <div className="faq-answer-inner">
+                    <p>{f.a}</p>
+                  </div>
+                </div>
               </details>
             ))}
           </div>
         </section>
 
-        {/* ═══ CONTACT FORM + LOCATION ═══ */}
+        {/* ═══ LOCATION ═══ */}
         <section id="contact" className="sp" style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div className="rg2" style={{ alignItems: "start" }}>
-            {/* Left: Visit info + map */}
+            {/* Left: Visit info */}
             <div>
               <div className="sec-label">Visit Us</div>
               <h2 className="sec-heading" style={{ fontSize: "clamp(28px,4vw,38px)", marginBottom: 20 }}>
@@ -476,47 +434,15 @@ export default function DDTAlterations() {
                 </div>
               </div>
 
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <a href={PHONE_HREF} className="btn-g">Call Now</a>
                 <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="btn-p">
                   Get Directions
                 </a>
               </div>
-
-              <div style={{ marginBottom: 28 }}>
-                <div className="sec-label" style={{ marginBottom: 8 }}>Serving</div>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  {["Harbour Island", "Downtown Tampa", "Water Street", "Channelside", "Davis Island"].map((a, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        padding: "6px 14px",
-                        borderRadius: 2,
-                        background: CREAM,
-                        border: `1px solid ${LINE}`,
-                        fontSize: 11,
-                        color: CHARCOAL,
-                        fontWeight: 400,
-                      }}
-                    >
-                      {a}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Google Maps embed */}
-              <iframe
-                src={MAPS_EMBED_URL}
-                className="maps-embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="DDT Alterations location on Google Maps"
-                allowFullScreen
-              />
             </div>
 
-            {/* Right: Building photo + contact form */}
+            {/* Right: Building photo */}
             <div>
               <div className="loc-img">
                 <Image
@@ -534,15 +460,53 @@ export default function DDTAlterations() {
                   <div style={{ fontSize: 10, color: GOLD, letterSpacing: 1 }}>{CITY_STATE}</div>
                 </div>
               </div>
-
-              {/* Contact Form */}
-              <div style={{ marginTop: 28 }}>
-                <h3 style={{ fontFamily: SERIF, fontSize: 22, fontWeight: 500, color: NAVY, marginBottom: 16 }}>
-                  Send Us a Message
-                </h3>
-                <ContactForm />
-              </div>
             </div>
+          </div>
+
+          {/* Serving areas */}
+          <div style={{ marginTop: 36 }}>
+            <div className="sec-label" style={{ marginBottom: 8 }}>Serving</div>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              {[
+                "Harbour Island",
+                "Downtown Tampa",
+                "Water Street",
+                "Channelside",
+                "Davis Island",
+                "Hyde Park",
+                "SoHo",
+                "Bayshore",
+                "Westshore",
+                "South Tampa",
+              ].map((a, i) => (
+                <span
+                  key={i}
+                  style={{
+                    padding: "6px 14px",
+                    borderRadius: 2,
+                    background: CREAM,
+                    border: `1px solid ${LINE}`,
+                    fontSize: 11,
+                    color: CHARCOAL,
+                    fontWeight: 400,
+                  }}
+                >
+                  {a}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Full-width Google Maps embed */}
+          <div style={{ marginTop: 36 }}>
+            <iframe
+              src={MAPS_EMBED_URL}
+              className="maps-embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="DDT Alterations location on Google Maps"
+              allowFullScreen
+            />
           </div>
         </section>
       </main>

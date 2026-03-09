@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /* ═══ PALETTE — warm ivory + deep navy + gold thread ═══ */
 const IVORY = "#FAF8F3";
@@ -9,30 +7,33 @@ const NAVY = "#1B2A3D";
 const NAVY_L = "#2A3D55";
 const CHARCOAL = "#3A3A3A";
 const WARM = "#6B5E4F";
-const GOLD = "#C9A84C";
-const GOLD_L = "#D4BA6A";
-const GOLD_D = "#B08E3A";
+const GOLD = "#B8976A";
+const GOLD_L = "#CEAD82";
+const GOLD_D = "#9A7D55";
 const W = "#FFFFFF";
+const BLK = "#111111";
 const LINE = "#E0DAD0";
 
 /* ═══ FONTS ═══ */
-const SERIF = "var(--font-cormorant), 'Cormorant Garamond', serif";
-const SANS = "var(--font-outfit), 'Outfit', sans-serif";
+const SERIF = "'Cormorant Garamond',serif";
+const SANS = "'Outfit',sans-serif";
 
 /* ═══ LOGO — clean DDT monogram ═══ */
-const Logo = ({ size = 1, dark = false }: { size?: number; dark?: boolean }) => {
+const Logo = ({ size = 1, dark = false }) => {
   const c1 = dark ? W : NAVY;
   const c2 = dark ? GOLD_L : GOLD;
   const h = 36 * size;
   return (
     <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
       <svg height={h} viewBox="0 0 200 50" fill="none">
+        {/* Top thin line */}
         <line x1="0" y1="2" x2="200" y2="2" stroke={c2} strokeWidth="0.75" />
+        {/* DDT letters — elegant high-contrast serif */}
         <text
           x="100"
           y="35"
           textAnchor="middle"
-          fontFamily="'Cormorant Garamond', serif"
+          fontFamily="'Cormorant Garamond',serif"
           fontSize="38"
           fontWeight="600"
           letterSpacing="10"
@@ -40,12 +41,14 @@ const Logo = ({ size = 1, dark = false }: { size?: number; dark?: boolean }) => 
         >
           DDT
         </text>
+        {/* Bottom thin line */}
         <line x1="0" y1="42" x2="200" y2="42" stroke={c2} strokeWidth="0.75" />
+        {/* ALTERATIONS below */}
         <text
           x="100"
           y="49.5"
           textAnchor="middle"
-          fontFamily="'Outfit', sans-serif"
+          fontFamily="'Outfit',sans-serif"
           fontSize="6.5"
           fontWeight="400"
           letterSpacing="5"
@@ -210,13 +213,7 @@ const Ic = {
 };
 
 /* ═══ DECORATIVE STITCH LINE ═══ */
-const Stitch = ({
-  color = GOLD,
-  style: s = {},
-}: {
-  color?: string;
-  style?: React.CSSProperties;
-}) => (
+const Stitch = ({ color = GOLD, style: s = {} }) => (
   <div
     style={{
       width: "100%",
@@ -241,70 +238,10 @@ const Stitch = ({
   </div>
 );
 
-/* ═══ IMAGE PLACEHOLDER ═══ */
-const ImagePlaceholder = ({
-  height = 200,
-  style: s = {},
-}: {
-  height?: number | string;
-  style?: React.CSSProperties;
-}) => (
-  <div
-    style={{
-      height,
-      background: CREAM,
-      border: `1px solid ${LINE}`,
-      borderRadius: 4,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      position: "relative",
-      overflow: "hidden",
-      ...s,
-    }}
-  >
-    <div
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        opacity: 0.03,
-      }}
-    >
-      <span
-        style={{
-          fontFamily: SERIF,
-          fontSize: 80,
-          fontWeight: 600,
-          color: NAVY,
-          letterSpacing: 8,
-        }}
-      >
-        DDT
-      </span>
-    </div>
-    <span
-      style={{
-        fontFamily: SANS,
-        fontSize: 11,
-        color: `${WARM}80`,
-        letterSpacing: 2,
-        textTransform: "uppercase",
-        fontWeight: 400,
-        position: "relative",
-      }}
-    >
-      Photo
-    </span>
-  </div>
-);
-
-/* ═══ MAIN PAGE ═══ */
 export default function DDTAlterations() {
-  const [, setSec] = useState("top");
+  const [sec, setSec] = useState("top");
 
-  const scrollTo = (id: string) => () => {
+  const scrollTo = (id) => () => {
     const el = document.querySelector(`[data-s="${id}"]`);
     if (el) el.scrollIntoView({ behavior: "smooth" });
     setSec(id);
@@ -321,6 +258,8 @@ export default function DDTAlterations() {
       }}
     >
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap');
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
         .btn-p{padding:14px 36px;background:${NAVY};color:${W};font-family:${SANS};font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:all 0.3s}
         .btn-p:hover{background:${NAVY_L};box-shadow:0 4px 16px rgba(27,42,61,0.2)}
         .btn-g{padding:14px 36px;background:${GOLD};color:${W};font-family:${SANS};font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:all 0.3s}
@@ -353,13 +292,11 @@ export default function DDTAlterations() {
           <Logo size={0.85} />
         </div>
         <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
-          {(
-            [
-              ["services", "Services"],
-              ["about", "About"],
-              ["contact", "Visit"],
-            ] as const
-          ).map(([id, l]) => (
+          {[
+            ["services", "Services"],
+            ["about", "About"],
+            ["contact", "Visit"],
+          ].map(([id, l]) => (
             <span
               key={id}
               onClick={scrollTo(id)}
@@ -459,15 +396,125 @@ export default function DDTAlterations() {
               </a>
             </div>
           </div>
-
-          {/* Hero placeholder image */}
+          {/* Decorative illustration panel */}
           <div style={{ position: "relative" }}>
-            <ImagePlaceholder
-              height={380}
+            <div
               style={{
+                background: CREAM,
                 borderRadius: 4,
+                padding: "48px 36px",
+                border: `1px solid ${LINE}`,
+                position: "relative",
+                overflow: "hidden",
               }}
-            />
+            >
+              {/* Large watermark monogram */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%,-50%)",
+                  opacity: 0.04,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: SERIF,
+                    fontSize: 180,
+                    fontWeight: 600,
+                    color: NAVY,
+                    letterSpacing: 12,
+                  }}
+                >
+                  DDT
+                </span>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 24,
+                  position: "relative",
+                }}
+              >
+                {[
+                  {
+                    icon: Ic.scissors(NAVY),
+                    label: "Precision Cutting",
+                    sub: "Clean lines, careful handling",
+                  },
+                  {
+                    icon: Ic.ruler(NAVY),
+                    label: "Measured Fitting",
+                    sub: "Every garment evaluated individually",
+                  },
+                  {
+                    icon: Ic.needle(NAVY),
+                    label: "Expert Stitching",
+                    sub: "Finished to last",
+                  },
+                ].map((s, i) => (
+                  <div
+                    key={i}
+                    style={{ display: "flex", gap: 14, alignItems: "center" }}
+                  >
+                    {s.icon}
+                    <div>
+                      <div
+                        style={{
+                          fontFamily: SERIF,
+                          fontSize: 18,
+                          color: NAVY,
+                          fontWeight: 500,
+                        }}
+                      >
+                        {s.label}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: 11,
+                          color: WARM,
+                          fontWeight: 300,
+                          marginTop: 1,
+                        }}
+                      >
+                        {s.sub}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div
+                style={{
+                  marginTop: 28,
+                  padding: "14px 20px",
+                  background: NAVY,
+                  borderRadius: 2,
+                  display: "flex",
+                  gap: 12,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div style={{ display: "flex", gap: 2 }}>
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <span key={i}>{Ic.star(GOLD)}</span>
+                  ))}
+                </div>
+                <span
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: 10,
+                    color: GOLD_L,
+                    letterSpacing: 1.5,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Trusted on Harbour Island
+                </span>
+              </div>
+            </div>
           </div>
         </div>
         <Stitch
@@ -480,74 +527,65 @@ export default function DDTAlterations() {
         data-s="about"
         style={{
           padding: "72px 32px",
-          maxWidth: 1000,
+          maxWidth: 800,
           margin: "0 auto",
+          textAlign: "center",
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div
-            style={{
-              fontFamily: SANS,
-              fontSize: 11,
-              fontWeight: 500,
-              letterSpacing: 4,
-              color: GOLD,
-              textTransform: "uppercase",
-              marginBottom: 12,
-            }}
-          >
-            About DDT
-          </div>
-          <h2
-            style={{
-              fontFamily: SERIF,
-              fontSize: "clamp(28px,4vw,40px)",
-              fontWeight: 400,
-              color: NAVY,
-              marginBottom: 16,
-            }}
-          >
-            Craftsmanship You Can{" "}
-            <em style={{ fontStyle: "italic", color: GOLD_D }}>Trust</em>
-          </h2>
+        <div
+          style={{
+            fontFamily: SANS,
+            fontSize: 11,
+            fontWeight: 500,
+            letterSpacing: 4,
+            color: GOLD,
+            textTransform: "uppercase",
+            marginBottom: 12,
+          }}
+        >
+          About DDT
         </div>
-        <div className="rg2" style={{ alignItems: "center" }}>
-          <div>
-            <p
-              style={{
-                fontSize: 15,
-                color: WARM,
-                lineHeight: 1.9,
-                fontWeight: 300,
-                maxWidth: 600,
-                marginBottom: 16,
-              }}
-            >
-              DDT Alterations helps clients get more out of the clothes they
-              already own. Whether it&apos;s adjusting the fit of everyday garments,
-              repairing worn pieces, or refining special items, our focus is on
-              thoughtful alterations that restore comfort, confidence, and
-              wearability.
-            </p>
-            <p
-              style={{
-                fontSize: 15,
-                color: WARM,
-                lineHeight: 1.9,
-                fontWeight: 300,
-                maxWidth: 600,
-              }}
-            >
-              Serving Harbour Island and the greater Tampa area, DDT is trusted
-              for reliable service, clean work, and consistent results — without
-              overcomplicating the process.
-            </p>
-          </div>
-          <ImagePlaceholder
-            height={300}
-            style={{ borderRadius: 4 }}
-          />
-        </div>
+        <h2
+          style={{
+            fontFamily: SERIF,
+            fontSize: "clamp(28px,4vw,40px)",
+            fontWeight: 400,
+            color: NAVY,
+            marginBottom: 16,
+          }}
+        >
+          Craftsmanship You Can{" "}
+          <em style={{ fontStyle: "italic", color: GOLD_D }}>Trust</em>
+        </h2>
+        <p
+          style={{
+            fontSize: 15,
+            color: WARM,
+            lineHeight: 1.9,
+            fontWeight: 300,
+            maxWidth: 600,
+            margin: "0 auto 16px",
+          }}
+        >
+          DDT Alterations helps clients get more out of the clothes they already
+          own. Whether it's adjusting the fit of everyday garments, repairing
+          worn pieces, or refining special items, our focus is on thoughtful
+          alterations that restore comfort, confidence, and wearability.
+        </p>
+        <p
+          style={{
+            fontSize: 15,
+            color: WARM,
+            lineHeight: 1.9,
+            fontWeight: 300,
+            maxWidth: 600,
+            margin: "0 auto",
+          }}
+        >
+          Serving Harbour Island and the greater Tampa area, DDT is trusted for
+          reliable service, clean work, and consistent results — without
+          overcomplicating the process.
+        </p>
       </section>
 
       {/* APPROACH */}
@@ -669,7 +707,7 @@ export default function DDTAlterations() {
             }}
           >
             Professional Alterations{" "}
-            <em style={{ fontStyle: "italic", color: GOLD_D }}>&amp; Repairs</em>
+            <em style={{ fontStyle: "italic", color: GOLD_D }}>& Repairs</em>
           </h2>
         </div>
         <div className="rg3">
@@ -720,11 +758,6 @@ export default function DDTAlterations() {
                 background: W,
               }}
             >
-              {/* Service placeholder image */}
-              <ImagePlaceholder
-                height={150}
-                style={{ marginBottom: 16, borderRadius: 3 }}
-              />
               <div style={{ marginBottom: 14 }}>{s.icon}</div>
               <h3
                 style={{
@@ -749,17 +782,11 @@ export default function DDTAlterations() {
                 {s.d}
               </p>
               <Stitch style={{ marginBottom: 14 }} />
-              <div
-                style={{ display: "flex", flexDirection: "column", gap: 6 }}
-              >
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 {s.items.map((item, ii) => (
                   <div
                     key={ii}
-                    style={{
-                      display: "flex",
-                      gap: 8,
-                      alignItems: "center",
-                    }}
+                    style={{ display: "flex", gap: 8, alignItems: "center" }}
                   >
                     <div
                       style={{
@@ -771,11 +798,7 @@ export default function DDTAlterations() {
                       }}
                     />
                     <span
-                      style={{
-                        fontSize: 12,
-                        color: CHARCOAL,
-                        fontWeight: 400,
-                      }}
+                      style={{ fontSize: 12, color: CHARCOAL, fontWeight: 400 }}
                     >
                       {item}
                     </span>
@@ -892,11 +915,7 @@ export default function DDTAlterations() {
                     Address
                   </div>
                   <div
-                    style={{
-                      fontSize: 15,
-                      color: CHARCOAL,
-                      lineHeight: 1.6,
-                    }}
+                    style={{ fontSize: 15, color: CHARCOAL, lineHeight: 1.6 }}
                   >
                     704 Harbour Post Dr
                     <br />
@@ -928,11 +947,7 @@ export default function DDTAlterations() {
                     Hours
                   </div>
                   <div
-                    style={{
-                      fontSize: 15,
-                      color: CHARCOAL,
-                      lineHeight: 1.6,
-                    }}
+                    style={{ fontSize: 15, color: CHARCOAL, lineHeight: 1.6 }}
                   >
                     Mon – Fri: 7:00 AM – 7:00 PM
                     <br />
@@ -1004,12 +1019,14 @@ export default function DDTAlterations() {
                 background: CREAM,
               }}
             >
+              {/* Illustrated map area */}
               <svg
                 width="100%"
                 viewBox="0 0 400 300"
                 preserveAspectRatio="xMidYMid slice"
               >
                 <rect width="400" height="300" fill="#E8E2D6" />
+                {/* Water */}
                 <path
                   d="M0 180 Q100 160, 200 180 T400 180 L400 300 L0 300Z"
                   fill="#C8D8E4"
@@ -1020,11 +1037,13 @@ export default function DDTAlterations() {
                   fill="#B8CCDB"
                   opacity="0.3"
                 />
+                {/* Roads */}
                 <rect x="80" y="0" width="3" height="180" fill="#D5CFC4" />
                 <rect x="180" y="0" width="3" height="175" fill="#D5CFC4" />
                 <rect x="280" y="0" width="3" height="170" fill="#D5CFC4" />
                 <rect x="0" y="80" width="400" height="3" fill="#D5CFC4" />
                 <rect x="0" y="140" width="350" height="3" fill="#D5CFC4" />
+                {/* Harbour Island land */}
                 <rect
                   x="120"
                   y="90"
@@ -1035,6 +1054,7 @@ export default function DDTAlterations() {
                   stroke="#C8C2B4"
                   strokeWidth="1"
                 />
+                {/* DDT Pin */}
                 <circle cx="180" cy="120" r="12" fill={NAVY} />
                 <circle cx="180" cy="120" r="5" fill={GOLD} />
                 <text
@@ -1048,6 +1068,7 @@ export default function DDTAlterations() {
                 >
                   DDT ALTERATIONS
                 </text>
+                {/* Labels */}
                 <text
                   x="175"
                   y="155"
@@ -1103,9 +1124,7 @@ export default function DDTAlterations() {
                 <div style={{ fontFamily: SERIF, fontSize: 13, color: W }}>
                   704 Harbour Post Dr
                 </div>
-                <div
-                  style={{ fontSize: 10, color: GOLD, letterSpacing: 1 }}
-                >
+                <div style={{ fontSize: 10, color: GOLD, letterSpacing: 1 }}>
                   Tampa, FL 33602
                 </div>
               </div>
@@ -1145,11 +1164,7 @@ export default function DDTAlterations() {
         </div>
         <Stitch style={{ maxWidth: 1000, margin: "16px auto 0" }} />
         <div
-          style={{
-            maxWidth: 1000,
-            margin: "12px auto 0",
-            textAlign: "center",
-          }}
+          style={{ maxWidth: 1000, margin: "12px auto 0", textAlign: "center" }}
         >
           <span style={{ fontSize: 10, color: `${WARM}80` }}>
             © 2026 DDT Alterations. All rights reserved.

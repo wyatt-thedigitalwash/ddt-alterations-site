@@ -120,11 +120,7 @@ const FAQS = [
   },
   {
     q: "How much do alterations cost?",
-    a: "Pricing varies by garment and the complexity of the work. Simple hems start at $10–$15. We'll always give you an upfront quote before starting any work.",
-  },
-  {
-    q: "Do you repair zippers and buttons?",
-    a: "Yes — zipper replacements, button repairs, seam fixes, and tear repairs are some of our most common services. Bring it in and we'll take a look.",
+    a: "Pricing varies by garment and the complexity of the work. We'll always give you an upfront quote before starting any work.",
   },
 ];
 
@@ -350,7 +346,7 @@ export default function DDTAlterations() {
         <section className="trust-sec" style={{ background: NAVY }}>
           <div className="trust-wrap">
             {[
-              { v: "7am–7pm", l: "Weekday Hours" },
+              { v: "8am–6pm", l: "Monday – Friday" },
               { v: "Walk-Ins", l: "Always Welcome" },
               { v: "Same Week", l: "Turnaround" },
               { v: "All Garments", l: "Handled With Care" },
@@ -406,9 +402,7 @@ export default function DDTAlterations() {
                   <div>
                     <div className="sec-label" style={{ marginBottom: 4 }}>Hours</div>
                     <div style={{ fontSize: 15, color: CHARCOAL, lineHeight: 1.6 }}>
-                      Mon – Fri: 7:00 AM – 7:00 PM<br />
-                      Saturday: 8:00 AM – 4:00 PM<br />
-                      Sunday: Closed
+                      Mon – Fri: 8:00 AM – 6:00 PM
                     </div>
                   </div>
                 </div>
@@ -518,7 +512,7 @@ export default function DDTAlterations() {
               {ADDRESS}, {CITY_STATE}
             </div>
             <div style={{ fontSize: 11, color: WARM, marginTop: 2 }}>
-              Mon–Fri 7am–7pm · Sat 8am–4pm ·{" "}
+              Mon–Fri 8am–6pm ·{" "}
               <a href={PHONE_HREF} style={{ color: WARM, textDecoration: "none" }}>{PHONE}</a>
               {" · "}
               <a href={EMAIL_HREF} style={{ color: WARM, textDecoration: "none" }}>{EMAIL}</a>

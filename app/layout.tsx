@@ -23,23 +23,35 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ddt-alterations-site.vercel.app"),
   title: "DDT Alterations — Tailoring & Repairs | Harbour Island, Tampa FL",
   description:
     "Professional alterations, tailoring, and garment repairs on Harbour Island in Tampa, FL. Hemming, resizing, zipper replacement, dress alterations, and same-week turnaround. Walk-ins welcome.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png" }],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
-    title: "DDT Alterations — Tailoring & Repairs | Harbour Island, Tampa FL",
+    title: "DDT Alterations — Harbour Island, Tampa",
     description:
-      "Professional alterations, tailoring, and garment repairs on Harbour Island in Tampa, FL. Same-week turnaround. Walk-ins welcome.",
+      "Expert tailoring and alterations in Tampa, FL. Same week turnaround. Walk-ins welcome.",
     url: "https://ddt-alterations-site.vercel.app",
     siteName: "DDT Alterations",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary",
-    title: "DDT Alterations — Harbour Island, Tampa FL",
+    card: "summary_large_image",
+    title: "DDT Alterations — Harbour Island, Tampa",
     description:
-      "Professional alterations, tailoring, and garment repairs. Same-week turnaround. Walk-ins welcome.",
+      "Expert tailoring and alterations in Tampa, FL. Same week turnaround. Walk-ins welcome.",
+    images: ["/og-image.png"],
   },
 };
 

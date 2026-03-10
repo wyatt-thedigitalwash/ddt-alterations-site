@@ -16,8 +16,10 @@ export const SERIF = "var(--font-cormorant), 'Cormorant Garamond', serif";
 export const SANS = "var(--font-outfit), 'Outfit', sans-serif";
 
 /* ═══ Contact Info ═══ */
-export const PHONE = "(813) 555-0000";
-export const PHONE_HREF = "tel:+18135550000";
+export const PHONE = "(855) 707-6226";
+export const PHONE_HREF = "tel:+18557076226";
+export const EMAIL = "danny@ddtalterations.com";
+export const EMAIL_HREF = "mailto:danny@ddtalterations.com";
 export const ADDRESS = "704 Harbour Post Dr";
 export const CITY_STATE = "Tampa, FL 33602";
 export const MAPS_URL = "https://share.google/60BPgy3hkRSLbjISU";

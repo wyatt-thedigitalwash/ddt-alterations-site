@@ -69,6 +69,8 @@ const jsonLd = {
     postalCode: "33602",
     addressCountry: "US",
   },
+  telephone: "+18557076226",
+  email: "danny@ddtalterations.com",
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
